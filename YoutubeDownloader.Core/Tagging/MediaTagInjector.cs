@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,23 +11,6 @@ namespace YoutubeDownloader.Core.Tagging;
 public class MediaTagInjector
 {
     private readonly MusicBrainzClient _musicBrainz = new();
-
-    private void InjectMiscMetadata(MediaFile mediaFile, IVideo video)
-    {
-        var description = (video as Video)?.Description;
-        if (!string.IsNullOrWhiteSpace(description))
-            mediaFile.SetDescription(description);
-
-        mediaFile.SetComment(
-            $"""
-            Downloaded using YoutubeDownloader (https://github.com/Tyrrrz/YoutubeDownloader)
-            Video: {video.Title}
-            Video URL: {video.Url}
-            Channel: {video.Author.ChannelTitle}
-            Channel URL: {video.Author.ChannelUrl}
-            """
-        );
-    }
 
     private async Task InjectMusicMetadataAsync(
         MediaFile mediaFile,
@@ -87,8 +70,6 @@ public class MediaTagInjector
     )
     {
         using var mediaFile = MediaFile.Open(filePath);
-
-        InjectMiscMetadata(mediaFile, video);
         await InjectMusicMetadataAsync(mediaFile, video, cancellationToken);
         await InjectThumbnailAsync(mediaFile, video, cancellationToken);
 

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "YoutubeDownloaderCLI": {
+      "commandName": "Project",
+      "commandLineArgs": "https://youtu.be/nmeeLmB95E8 C:\\Users\\luket\\Downloads\\test.mp3 -f mp3"
+    }
+  }
+}

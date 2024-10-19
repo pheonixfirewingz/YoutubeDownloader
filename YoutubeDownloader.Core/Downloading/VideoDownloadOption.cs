@@ -18,7 +18,7 @@ public partial record VideoDownloadOption(
 
 public partial record VideoDownloadOption
 {
-    internal static IReadOnlyList<VideoDownloadOption> ResolveAll(StreamManifest manifest)
+    public static IReadOnlyList<VideoDownloadOption> ResolveAll(StreamManifest manifest)
     {
         IEnumerable<VideoDownloadOption> GetVideoAndAudioOptions()
         {
